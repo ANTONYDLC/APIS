@@ -1,0 +1,22 @@
+@model List<(Usuario usuario, PaisInfo? paisInfo)>
+
+<h2>Usuarios Registrados</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th><th>Email</th><th>País</th><th>Región</th><th>Bandera</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var (usuario, pais) in Model)
+    {
+        <tr>
+            <td>@usuario.Nombre</td>
+            <td>@usuario.Email</td>
+            <td>@(pais?.NombreOficial ?? usuario.Pais)</td>
+            <td>@pais?.Region</td>
+            <td><img src="@pais?.BanderaUrl" width="50" /></td>
+        </tr>
+    }
+    </tbody>
+</table>
